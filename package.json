@@ -1,0 +1,14 @@
+{
+  "name": "loox-os",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "t,sc && electron dist/main.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "electron": "^30.0.2",
+    "typescript": "^5.4.5"
+  }
+}
