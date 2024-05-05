@@ -1,0 +1,6 @@
+{
+  "OS_NAME": "LooxOS",
+  "OS_VERSION": "{sys_ver}",
+  "LOOX_VERSION": "1.0.0",
+  "OS_TYPE": "phone"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Homescreen",
+  "role": "homescreen",
+  "type": "local",
+  "description": "Home screen for phone and tablet",
+  "version": "{sys_ver}",
+  "authors": [
+    { 
+      "name": "Loox Org",
+      "url": "https://looxorg.github.io/"
+    }
+  ],
+  "devices": [ 
+    "!desktop",
+    "!laptop",
+    "phone",
+    "tablet",
+    "!smart_tv"
+  ],
+  "entry": "index.html",
+  "manifest_version": 1,
+  "manifest_type": "loox_os_app"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "YouTube",
+  "role": "app",
+  "type": "website",
+  "description": "Explore all of what YouTube has to offer.",
+  "version": "1.0.0",
+  "entry": "https://www.youtube.com/",
+  "authors": [
+    { 
+      "name": "Google LLC",
+      "url": "https://www.google.com/"
+    }
+  ],
+
+  "devices": [ 
+    "desktop",
+    "laptop",
+    "phone",
+    "tablet",
+    "!smart_tv"
+  ],
+  "manifest_version": 1,
+  "manifest_type": "loox_os_app"
+}

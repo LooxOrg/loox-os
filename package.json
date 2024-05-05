@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "t,sc && electron dist/main.js"
+    "start": "tsc && electron dist/system/main.js"
   },
   "dependencies": {
+    "@types/node": "^20.12.8",
     "dotenv": "^16.4.5",
     "electron": "^30.0.2",
     "typescript": "^5.4.5"
