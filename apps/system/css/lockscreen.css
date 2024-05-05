@@ -1,0 +1,30 @@
+.lockscreen-time {
+  font-size: 100px;
+  font-weight: bold;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lockscreen-date {
+  font-size: 20px;
+  font-weight: lighter ;
+}
+
+.lockscreen {
+  width: 100vw;
+  height: calc(100vh - 40px - 20px);
+  position:  absolute;
+  top: 60px;
+}
+
+.lockscreen-swipe{
+  background-color: rgb(255, 0, 0);
+  width: 100vw;
+  height: 40px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 90;
+}

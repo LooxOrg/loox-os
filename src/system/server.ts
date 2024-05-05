@@ -14,27 +14,30 @@ export default class Server {
     createServer(this.handleRequest).listen(8081);
   }
 
-  handleRequest(req: IncomingMessage, res: ServerResponse) {
-    console.log('Handling request:', req.url);
-    let appid = req.headers.host?.split('.')[0];
-    console.log('App ID:', appid);
+  handleRequest(request: IncomingMessage, response: ServerResponse) {
+    const host = request.headers.host?.split('.')[0];
 
-    if (appid && appid != 'localhost') {
-      console.log('Fetching apps.json');
-      new Settings().get('apps', 'apps.json').forEach((app: { shortid: string; url: string; }) => {
-        console.log('Checking app:', app.shortid);
-        if (app.shortid == appid) {
-          console.log('Found app:', app);
-          res.writeHead(200);
-          if (!req.url) return res.end();
-          console.log('Sending file:', getAppFile(app.shortid, req.url));
-          res.end(getAppFile(app.shortid, req.url));
-        }
-      });
+    if (!host || host === 'localhost') {
+      response.writeHead(404);
+      response.end();
+      return;
+    }
+
+    const apps = new Settings().get('apps', 'apps.json');
+    const app = apps.find((app: { shortid: string; }) => app.shortid === host);
+
+    if (!app) {
+      response.writeHead(404);
+      response.end();
+      return;
+    }
+    console.log("request", app.shortid, request.url);
+    response.writeHead(200);
+    const filePath = getAppFile(app.shortid, request.url || '');
+    if (filePath) {
+      response.end(filePath);
     } else {
-      console.log('Requested host is localhost or not specified');
-      res.writeHead(404);
-      res.end();
+      response.end();
     }
   }
 }

@@ -37,6 +37,10 @@ class Main {
       autoHideMenuBar: true,
       transparent: true,
       frame: false,
+      webPreferences: {
+        nodeIntegration: true,
+        webviewTag: true
+      }
     });
     win.loadURL('http://system.localhost:8081/index.html');
   }

@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/titlebar.css">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/titlebar.css" />
+    <link rel="stylesheet" href="css/lockscreen.css" />
+
+    <script src="js/lockscreen.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -19,20 +22,21 @@
       <div class="notifications-icons"></div>
       <div class="status">
         <div class="clock">XX:XX</div>
-        <div class="battery">
-
-        </div>
+        <div class="battery"></div>
       </div>
     </div>
     <div class="lockscreen">
       <div class="lockscreen-time">
-        <div class="hours">
-          XX
-        </div>
-        <div class="minutes">
-          XX
-        </div>
+        <div class="lockscreen-hour"></div>
+        <div class="lockscreen-minute"></div>
+        <div class="lockscreen-date"></div>
       </div>
+      
+      <span class="lockscreen-swipe"></span>
     </div>
+    <div class="cursor"></div>
+    <div class="keyboard"></div>
+
+    <div class="content"></div>
   </body>
 </html>
