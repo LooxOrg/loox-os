@@ -7,24 +7,34 @@ import {Settings} from '../settings';
 
 let ex = express();
 
+let MIME = {
+  "html": "text/html",
+  "js": "text/javascript",
+  "css": "text/css",
+  "json": "application/json",
+  "png": "image/png",
+  "jpg": "image/jpg",
+  "mp3": "audio/mpeg",
+  "mp4": "video/mp4"
+};
 export default function () {
   let server = createServer((req: IncomingMessage, res: ServerResponse) => {
     
     let hostname = req.headers.host?.split('.')[0];
     let hostsLength = req.headers.host?.split('.').length;
     let path = req.url?.split('?')[0];
-
+    
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
+    
     if (hostname?.startsWith("localhost") && hostsLength === 1) {
-
+      
       if (path?.startsWith("/shared")) {
         let filePath = process.cwd() + path;
-
+        
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-          res.writeHead(200);
+          res.writeHead(200, { "Content-Type": MIME[path.split(".").pop() as keyof typeof MIME] });
           res.end(fs.readFileSync(filePath));
         } else {
           res.writeHead(404);

@@ -6,10 +6,18 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/titlebar.css" />
     <link rel="stylesheet" href="css/lockscreen.css" />
-    <link rel="stylesheet" href="css/statusbar.css">
+    <link rel="stylesheet" href="css/statusbar.css" />
+    <link rel="stylesheet" href="css/splashscreen.css" />
+    <link rel="stylesheet" href="css/error.css" />
 
     <script src="js/lockscreen.js"></script>
     <script src="js/statusbar.js"></script>
+
+    <script src="js/titlebar.js"></script>
+
+    <script src="js/splashscreen.js"></script>
+
+    <script src="js/error.js"></script>
     <script src="http://localhost:8081/shared/LooxJS.js"></script>
 
     <script src="js/webview.js"></script>
@@ -17,6 +25,14 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="error-popup" style="display: none;">
+      <div class="popup">
+        <span id="error-title"></span>
+        <span id="error-message"></span>
+      </div>
+
+    </div>
+
     <div class="titlebar">
       <span class="title">LooxOS Simulator</span>
       <span class="badge"> PRE-ALPHA</span>
@@ -24,8 +40,13 @@
         <button class="close" onclick="window.close()">X</button>
       </div>
     </div>
-    
+
     <div class="content">
+      <div class="splashscreen">
+        <video
+          src="http://localhost:8081/shared/media/video/splash_start.mp4"
+        ></video>
+      </div>
       <div class="statusbar">
         <div class="notifications-icons"></div>
         <div class="status">
