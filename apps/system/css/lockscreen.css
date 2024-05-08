@@ -10,17 +10,26 @@
 
 .lockscreen-date {
   font-size: 20px;
-  font-weight: lighter ;
+  font-weight: lighter;
 }
 
 .lockscreen {
+  flex: 1;
+  color: #ffffff;
+  /* URL Lockscreen */
+  background: url("https://img.freepik.com/vecteurs-libre/fond-neons-realistes_23-2148907367.jpg") no-repeat;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100vw;
-  height: calc(100vh - 40px - 20px);
-  position:  absolute;
-  top: 60px;
+  height: calc(100vh - 40px);
+  position: absolute;
+  top: 40px;
+  z-index: 110;
 }
 
-.lockscreen-swipe{
+.lockscreen-swipe {
   background-color: rgb(255, 0, 0);
   width: 100vw;
   height: 40px;

@@ -4,19 +4,22 @@
       "id": "org.loox.system",
       "shortid": "system",
       "name": "System",
-      "url": "http://system.localhost:8081/"
+      "url": "http://system.localhost:8081/",
+      "type": "local"
     },
     {
       "id": "org.loox.homescreen",
       "shortid": "homescreen",
       "name": "Homescreen",
-      "url": "http://homescreen.localhost:8081/"
+      "url": "http://homescreen.localhost:8081/",
+      "type": "local"
     },
     {
       "id": "com.google.youtube",
       "shortid": "youtube",
       "name": "YouTube",
-      "url": "http://youtube.localhost:8081/"
+      "url": "http://youtube.localhost:8081/",
+      "type": "hosted"
     }
   ]
 }

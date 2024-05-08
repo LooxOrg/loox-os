@@ -6,8 +6,14 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/titlebar.css" />
     <link rel="stylesheet" href="css/lockscreen.css" />
+    <link rel="stylesheet" href="css/statusbar.css">
 
     <script src="js/lockscreen.js"></script>
+    <script src="js/statusbar.js"></script>
+    <script src="http://localhost:8081/shared/LooxJS.js"></script>
+
+    <script src="js/webview.js"></script>
+
     <title>Document</title>
   </head>
   <body>
@@ -18,25 +24,29 @@
         <button class="close" onclick="window.close()">X</button>
       </div>
     </div>
-    <div class="statusbar">
-      <div class="notifications-icons"></div>
-      <div class="status">
-        <div class="clock">XX:XX</div>
-        <div class="battery"></div>
+    
+    <div class="content">
+      <div class="statusbar">
+        <div class="notifications-icons"></div>
+        <div class="status">
+          <div class="clock">OSIJehdqlskjhdlkqjshd</div>
+          <div class="battery"></div>
+        </div>
       </div>
-    </div>
-    <div class="lockscreen">
-      <div class="lockscreen-time">
-        <div class="lockscreen-hour"></div>
-        <div class="lockscreen-minute"></div>
-        <div class="lockscreen-date"></div>
-      </div>
-      
-      <span class="lockscreen-swipe"></span>
-    </div>
-    <div class="cursor"></div>
-    <div class="keyboard"></div>
+      <div class="lockscreen">
+        <div class="lockscreen-time">
+          <div class="lockscreen-hour"></div>
+          <div class="lockscreen-minute"></div>
+          <div class="lockscreen-date"></div>
+        </div>
 
-    <div class="content"></div>
+        <span class="lockscreen-swipe"></span>
+      </div>
+      <div class="cursor"></div>
+      <div class="keyboard"></div>
+
+      <div class="webview-container"></div>
+      <div class="controlbar"></div>
+    </div>
   </body>
 </html>

@@ -1,14 +1,18 @@
-export default class Settings {
+import * as fs from 'fs';
 
-  constructor() {}
-
-  get(key: string, filename: string) {
+export const Settings = {
+  
+  get (key: string, filename: string | undefined) {
     if (!filename) {
       filename = 'settings.json';
     }
-
-    let settings = require(`../../default/${filename}`);
-
+    let settings = null
+    if (fs.existsSync(process.cwd() + "/default/" + filename)) {
+      settings = require(process.cwd() + `/default/${filename}`);
+    } else {
+      return null
+    }
+    
     return settings[key];
   }
 

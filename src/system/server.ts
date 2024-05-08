@@ -1,53 +1,76 @@
+// Importing required modules
+import express, { Application, Request, Response } from 'express';
+import http, { IncomingMessage, ServerResponse, createServer } from 'http';
+import fs from 'fs';
+import Apps from '../apps';
+import {Settings} from '../settings';
 
-import { IncomingMessage, ServerResponse, createServer } from "http";
-import Settings from "../settings";
-import { existsSync, readFile, readFileSync } from "fs";
+let ex = express();
 
-export default class Server {
-  apps: {};
-  constructor() {
-    this.apps = {};
-
+export default function () {
+  let server = createServer((req: IncomingMessage, res: ServerResponse) => {
     
-  }
-  init() {
-    createServer(this.handleRequest).listen(8081);
-  }
+    let hostname = req.headers.host?.split('.')[0];
+    let hostsLength = req.headers.host?.split('.').length;
+    let path = req.url?.split('?')[0];
 
-  handleRequest(request: IncomingMessage, response: ServerResponse) {
-    const host = request.headers.host?.split('.')[0];
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    if (!host || host === 'localhost') {
-      response.writeHead(404);
-      response.end();
-      return;
+    if (hostname?.startsWith("localhost") && hostsLength === 1) {
+
+      if (path?.startsWith("/shared")) {
+        let filePath = process.cwd() + path;
+
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+          res.writeHead(200);
+          res.end(fs.readFileSync(filePath));
+        } else {
+          res.writeHead(404);
+          res.end();
+        }
+      } else if (path?.startsWith("/api/")) {
+        ex(req, res);
+      }
+    } else if (!hostname?.startsWith("localhost") && hostname && hostsLength == 2) {
+      let filePath = process.cwd() + "/apps/" + hostname + "/" +path;
+
+      if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+        res.writeHead(200);
+        res.end(fs.readFileSync(filePath));
+      } else {
+        res.writeHead(404);
+        res.end();
+      }
     }
 
-    const apps = new Settings().get('apps', 'apps.json');
-    const app = apps.find((app: { shortid: string; }) => app.shortid === host);
-
-    if (!app) {
-      response.writeHead(404);
-      response.end();
-      return;
-    }
-    console.log("request", app.shortid, request.url);
-    response.writeHead(200);
-    const filePath = getAppFile(app.shortid, request.url || '');
-    if (filePath) {
-      response.end(filePath);
-    } else {
-      response.end();
-    }
-  }
+  });
+  server.listen(8081);
 }
 
-function getAppFile(appId: string, filePath: string): string | null {
-  const appFolder = `${process.env.ROOT_PATH}/apps/${appId}`;
-  const fileFullPath = `${appFolder}/${filePath}`;
-  if (existsSync(fileFullPath)) {
-    return readFileSync(fileFullPath, 'utf8');
+ex.get('/api/apps/getAll', (req: Request, res: Response) => {
+  res.send({ apps: Apps.getAll() });
+})
+ex.get('/api/apps/get', async (req: Request, res: Response) => {
+  let app = await Apps.get(req.query.id as string);
+  console.log(app);
+  if (app) {
+    res.send({ app });
+    console.log("app manifest sent");
+  } else {
+    console.log("app manifest not found");
+    res.sendStatus(404);
+    //res.send({ app: null });
   }
-  return null;
-}
+  
+})
+
+ex.get('/api/settings/get', (req: Request, res: Response) => {
+  res.send({ value: Settings.get(req.query.key as string, req.query.file as string | undefined) });
+})
+
+ex.get("/api/device/getType", (req: Request, res: Response) => {
+  res.send({ type: process.env.OS_TYPE });
+})
 

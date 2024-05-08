@@ -1,3 +1,5 @@
 {
-  "theme": "dark"
+  "theme": "dark",
+  "homescreen_rows": 5,
+  "homescreen_columns": 4
 }
