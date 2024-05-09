@@ -30,10 +30,15 @@
 }
 
 .lockscreen-swipe {
-  background-color: rgb(255, 0, 0);
-  width: 100vw;
-  height: 40px;
+  background-color: rgba(0, 0, 0, 0.75);
+  filter: blur(15px);
+
+  width: 110vw;
+  height: 60px;
   position: absolute;
-  bottom: 0px;
+  bottom: -20px;
   z-index: 90;
+}
+.lockscreen-swipe::before {
+  backdrop-filter: blur(15px);
 }

@@ -24,7 +24,13 @@ let Webview = {
     } else if (deviceType == "desktop" || deviceType == "laptop" || deviceType == "smart_tv") {
       webview.useragent = BaseUserAgent;
     }
-    webview.src = "http://homescreen.localhost:8081/index.html";
+    let webviewDebug = false;
+    
+    if (webviewDebug) {
+      webview.src = "http://google.com";
+    } else {
+      webview.src = "http://homescreen.localhost:8081/index.html";
+    }
     webview.classList.add("webview");
     
     
