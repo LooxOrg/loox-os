@@ -1,12 +1,13 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
-  let rows = await LooxJS.Settings.get('homescreen_rows', 'settings.json');
-  let cols = await LooxJS.Settings.get('homescreen_columns', 'settings.json');
-  
-  console.log("rows: " + rows);
-  console.log("cols: " + cols);
+  Grid.init();
 
-  generateGrid(rows, cols);
+  //let rows = await LooxJS.Settings.get('homescreen_rows', 'settings.json');
+  //let cols = await LooxJS.Settings.get('homescreen_columns', 'settings.json');
+  //
+  //console.log("rows: " + rows);
+  //console.log("cols: " + cols);
+  //generateGrid(rows, cols);
 })
 
 

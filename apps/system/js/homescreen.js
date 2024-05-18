@@ -1,20 +1,27 @@
+
 document.addEventListener("DOMContentLoaded", async function () {
   try {
-    await Webview.init();
+    let deviceType = await LooxJS.Device.getType();
+    console.log(deviceType);
+    
+    if (deviceType == "phone" || deviceType == "tablet") {
+      await homescreen.init();
+      return;
+    }
   } catch (error) {
-    criticalError("Critical Error in Webview", error);
+    criticalError("Critical Error in Homescreen", error);
   }
 
 })
 
-let Webview = {
+let homescreen = {
   init: async function () {  
     
-    let deviceType = await LooxJS.Device.getType();
-    console.log(deviceType);
     let webview = document.createElement("webview");
-    let webviewContainer = document.querySelector(".webview-container");
-    
+    let webviewContainer = document.querySelector(".windows");
+
+    new AppWindow("http://homescreen.localhost:8081/manifest.json");
+    return
     let BaseUserAgent = "Mozilla/5.0 (Linux; Andorid 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 Chrome/124.0.0.0 LooxOS/1.0.0";
     
     if (deviceType == "phone") {

@@ -3,6 +3,7 @@
   "role": "app",
   "type": "local",
   "description": "Camera app for LooxOS",
+  "display": "immersive",
   "version": "1.0.0",
   "authors": [
     { 

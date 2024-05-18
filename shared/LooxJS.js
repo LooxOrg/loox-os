@@ -23,5 +23,16 @@ const LooxJS = {
       
       return response;
     }
+  },
+  LazyLoader: {
+    async load() {
+      let response = await fetch("http://localhost:8081/api/apps/getAll")
+        .then((response) => response.json())
+        .then((data) => {
+          return data.apps;
+        });
+      
+      return response;
+    }
   }
 }

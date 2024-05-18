@@ -24,3 +24,16 @@ npm install
 ```bash
 npm run dev
 ```
+
+3. The default edition is the desktop edition to change it, go to `/profiles/0/internal.json` and locate the `OS_TYPE` variable.
+   "desktop" for Desktop interface
+   "laptop" for Laptop interface (add Battery and portable devices specific thing)
+   "phone" for Phone interface
+   "tablet" for Tablet interface
+   "smart_tv" for Smart TV interface (Controller needed)
+   "console" for a Console environment (Controller needed)
+
+
+# Changelogs
+
+### PRE ALPHA v1.0.0

@@ -4,7 +4,8 @@
   "type": "website",
   "description": "Explore all of what YouTube has to offer.",
   "version": "1.0.0",
-  "entry": "https://www.youtube.com/",
+  "entry_url": "https://www.youtube.com/",
+  "display": "immersive",
   "authors": [
     { 
       "name": "Google LLC",

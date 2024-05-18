@@ -4,6 +4,7 @@
   "type": "local",
   "description": "Home screen for phone and tablet",
   "version": "{sys_ver}",
+  "display": "immersive",
   "authors": [
     { 
       "name": "Loox Org",
