@@ -2,11 +2,11 @@ import { BrowserWindow } from "electron";
 import Server from "./server";
 import { Settings } from "../settings";
 import devices from "../devices";
-import Apps from "../apps";
 
 const { app } = require('electron');
 
 class Main {
+  win: BrowserWindow | undefined;
 
   constructor() {
     this.init();
@@ -14,6 +14,7 @@ class Main {
 
   init() {
     app.on('ready', this.whenReady.bind(this));
+    process.on('uncaughtException', this.handleError.bind(this));
 
     process.env.ROOT_PATH = process.cwd();
   }
@@ -25,30 +26,40 @@ class Main {
   }
 
   makeWindow() {
-    let device = Settings.get('OS_TYPE', 'internal.json');
-
-    if (!device) {
-      device = 'desktop';
+    let OS_TYPE = Settings.get('OS_TYPE', 'internal.json');
+    let OS_VERSION = Settings.get('OS_VERSION', 'internal.json');
+    
+    if (!OS_TYPE) {
+      OS_TYPE = 'desktop';
     }
     
-    process.env.OS_TYPE = device; 
+    process.env.OS_TYPE = OS_TYPE;
+    process.env.OS_VERSION = OS_VERSION
+    
+    console.log(OS_TYPE);
 
-    console.log(device);
-
-    let { width, height } = devices[device];
-    let win = new BrowserWindow({
+    let { width, height } = devices[OS_TYPE];
+    this.win = new BrowserWindow({
       width: width,
       height: height + 40,
+      minHeight: devices["phone"].height,
+      minWidth: devices["phone"].width,
       autoHideMenuBar: true,
-      transparent: true,
+      transparent: false ,
       frame: false,
       show: true,
       webPreferences: {
         nodeIntegration: true,
-        webviewTag: true
+        webviewTag: true,
+        
       }
     });
-    win.loadURL('http://system.localhost:8081/index.html');
+    this.win.loadURL('http://system.localhost:8081/index.html');
+  }
+
+  handleError(_error: Error) {
+    console.error(_error);
+    this.win?.hide();
   }
 
 }

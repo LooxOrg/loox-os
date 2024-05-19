@@ -6,13 +6,13 @@ export const Settings = {
     if (!filename) {
       filename = 'settings.json';
     }
+    let settingPath = process.cwd() + `/default/settings/system/${filename}`;
     let settings = null
-    if (fs.existsSync(process.cwd() + "/default/" + filename)) {
-      settings = require(process.cwd() + `/default/${filename}`);
+    if (fs.existsSync(settingPath)) {
+      settings = require(settingPath);
     } else {
       return null
     }
-    
     return settings[key];
   }
 

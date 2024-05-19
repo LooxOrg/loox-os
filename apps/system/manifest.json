@@ -1,9 +1,11 @@
 {
   "name": "System",
   "role": "system",
+  "package_name": "system",
+  "display": "fullscreen",
   "type": "local",
   "description": "System app for the function of LooxOS",
-  "version": "{sys_ver}",
+  "version": "1.0.0",
   "authors": [
     { 
       "name": "Loox Org",

@@ -1,0 +1,38 @@
+{
+  "apps": [
+    {
+      "package": "system",
+      "name": "System",
+      "url": "http://system.localhost:8081/",
+      "path": "/apps/system/",
+      "manifests": {
+        "default": "/apps/system/manifest.json",
+        "en-us": "/apps/system/manifest.json",
+        "fr-fr": "/apps/system/manifest.fr-fr.json"
+      }
+    },
+    {
+      "package": "system.homescreen",
+      "name": "Homescreen",
+      "url": "http://system__homescreen.localhost:8081/",
+      "path": "/apps/system.homescreen/",
+      "manifests": {
+        "default": "/apps/system.homescreen/manifest.json",
+        "en-us": "/apps/system.homescreen/manifest.json",
+        "fr-fr": "/apps/system.homescreen/manifest.fr-fr.json"
+      }
+    },
+
+    {
+      "package": "com.google.youtube",
+      "name": "YouTube",
+      "url": "http://com__google__youtube.localhost:8081/",
+      "path": "/apps/com.google.youtube/",
+      "manifests": {
+        "default": "/apps/com.google.youtube/manifest.json",
+        "en-us": "/apps/com.google.youtube/manifest.json",
+        "fr-fr": "/apps/com.google.youtube/manifest.fr-fr.json"
+      }
+    }
+  ]
+}

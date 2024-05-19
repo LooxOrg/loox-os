@@ -4,6 +4,7 @@ import http, { IncomingMessage, ServerResponse, createServer } from 'http';
 import fs from 'fs';
 import Apps from '../apps';
 import {Settings} from '../settings';
+import { Console } from 'console';
 
 let ex = express();
 
@@ -44,15 +45,34 @@ export default function () {
         ex(req, res);
       }
     } else if (!hostname?.startsWith("localhost") && hostname && hostsLength == 2) {
-      let filePath = process.cwd() + "/apps/" + hostname + "/" +path;
-
-      if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-        res.writeHead(200);
-        res.end(fs.readFileSync(filePath));
-      } else {
-        res.writeHead(404);
-        res.end();
+      let filePath = process.cwd() + "/apps/" + hostname + "/" + path;
+      
+      console.log("Checking Apps")
+      console.log("Against: " + hostname);
+      
+      for (let app of Apps.getAll()) {
+        console.log("Checking app: " + app.package);
+        if (app.package === hostname) {
+          console.log(app.package + " matches: " + hostname);
+          if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+            res.writeHead(200);
+            res.end(fs.readFileSync(filePath));
+          } else {
+            res.writeHead(404);
+            res.end();
+          }
+        }
       }
+      
+      //let filePath = process.cwd() + "/apps/" + hostname + "/" +path;
+      //
+      //if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      //  res.writeHead(200);
+      //  res.end(fs.readFileSync(filePath));
+      //} else {
+      //  res.writeHead(404);
+      //  res.end();
+      //}
     }
 
   });

@@ -4,6 +4,7 @@
     if (manifestUrl) {
       this.manifestUrl = manifestUrl;
       this.create(manifestUrl, configuration);
+      console.log("AppWindow created");
     }
   }
 
@@ -18,8 +19,10 @@
 
       if (existingWindow) {
         existingWindow.focus();
+        console.log("Focus on existing window");
       } else {
         this.createWindow(this.manifest);
+        console.log("Create new window");
       }
     },
 

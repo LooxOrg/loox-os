@@ -2,58 +2,103 @@ document.addEventListener("DOMContentLoaded", function () {
   setClock();
   setInterval(setClock, 1000)
 
-  let swipe = document.querySelector(".lockscreen-swipe");
   let lockscreen = document.querySelector(".lockscreen");
-  console.log(swipe)
-    
+  let lockscreenBlur = document.querySelector(".lockscreen-blur");
+
   let startY;
-  let lockscreenHeight = lockscreen.clientHeight;
   let screenHeight = window.innerHeight;
-  document.addEventListener('mousedown', function (e) {
+  document.addEventListener("mousedown", function (e) {
     startY = e.clientY;
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
   });
 
   function onMouseMove(e) {
     let currentY = e.clientY;
     let diffY = currentY - startY;
-
     let newTranslateY = diffY + lockscreen.getBoundingClientRect().top;
+    let percent = -Math.floor(newTranslateY / screenHeight * 100);
 
-    if (newTranslateY < screenHeight - lockscreenHeight) {
-      lockscreen.style.transition = 'none';
-      lockscreen.style.transform = `translateY(${diffY}px)`;
-    } else if (newTranslateY <= 0) {
-      lockscreen.style.transform = `translateY(${-lockscreen.getBoundingClientRect().top}px)`;
-    } else {
-      lockscreen.style.transform = `translateY(${screenHeight - lockscreenHeight - lockscreen.getBoundingClientRect().top}px)`;
-    }
+    lockscreenBlur.style.backdropFilter = `blur(${percent}px)`;
+    lockscreenBlur.style.backgroundColor = `rgba(0, 0, 0, ${percent / 100 / 2})`;
+    console.log(percent)
   }
 
   function onMouseUp() {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
 
-    let translateY = parseInt(lockscreen.style.transform.slice(11, -3));
-    let distanceMoved = Math.abs(translateY);
+    lockscreenBlur.style.transition = "backdrop-filter 0.3s ease";
+    lockscreenBlur.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    lockscreenBlur.style.backdropFilter = "blur(150px)";
+    
 
-    if (distanceMoved >= lockscreenHeight / 2) {
+    setTimeout(function () {
       unlock();
-    } else {
-      lockscreen.style.transition = 'transform 0.3s ease';
-      lockscreen.style.transform = '';
-    }
+    }, 300);
   }
 
   function unlock() {
-    lockscreen.style.transition = 'transform 0.3s ease';
-    lockscreen.style.transform = `translateY(-${lockscreenHeight}px)`;
+    lockscreen.style.transition = "transform 0.3s ease";
+    lockscreen.style.opacity = "1";
 
     setTimeout(function () {
-      lockscreen.style.display = 'none';
-    }, 300); 
+      lockscreen.style.display = "none";
+    }, 300);
   }
+
+  //let swipe = document.querySelector(".lockscreen-swipe");
+  //let lockscreen = document.querySelector(".lockscreen");
+  //console.log(swipe)
+  //  
+  //let startY;
+  //let lockscreenHeight = lockscreen.clientHeight;
+  //let screenHeight = window.innerHeight;
+  //document.addEventListener('mousedown', function (e) {
+  //  startY = e.clientY;
+  //  document.addEventListener('mousemove', onMouseMove);
+  //  document.addEventListener('mouseup', onMouseUp);
+  //});
+  //
+  //function onMouseMove(e) {
+  //  let currentY = e.clientY;
+  //  let diffY = currentY - startY;
+  //
+  //  let newTranslateY = diffY + lockscreen.getBoundingClientRect().top;
+  //
+  //  if (newTranslateY < screenHeight - lockscreenHeight) {
+  //    lockscreen.style.transition = 'none';
+  //    lockscreen.style.transform = `translateY(${diffY}px)`;
+  //  } else if (newTranslateY <= 0) {
+  //    lockscreen.style.transform = `translateY(${-lockscreen.getBoundingClientRect().top}px)`;
+  //  } else {
+  //    lockscreen.style.transform = `translateY(${screenHeight - lockscreenHeight - lockscreen.getBoundingClientRect().top}px)//`;
+  //  }
+  //}
+  //
+  //function onMouseUp() {
+  //  document.removeEventListener('mousemove', onMouseMove);
+  //  document.removeEventListener('mouseup', onMouseUp);
+  //
+  //  let translateY = parseInt(lockscreen.style.transform.slice(11, -3));
+  //  let distanceMoved = Math.abs(translateY);
+  //
+  //  if (distanceMoved >= lockscreenHeight / 2) {
+  //    unlock();
+  //  } else {
+  //    lockscreen.style.transition = 'transform 0.3s ease';
+  //    lockscreen.style.transform = '';
+  //  }
+  //}
+  //
+  //function unlock() {
+  //  lockscreen.style.transition = 'transform 0.3s ease';
+  //  lockscreen.style.transform = `translateY(-${lockscreenHeight}px)`;
+  //
+  //  setTimeout(function () {
+  //    lockscreen.style.display = 'none';
+  //  }, 300); 
+  //}
 });
 
 

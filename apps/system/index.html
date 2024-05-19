@@ -36,10 +36,21 @@
     </div>
 
     <div class="titlebar">
-      <span class="title">LooxOS Simulator</span>
-      <span class="badge"> PRE-ALPHA</span>
+      <span class="title">LooxOS</span>
+      <span class="badge"> ALPHA</span>
       <div class="actions">
-        <button class="close" onclick="window.close()">X</button>
+        <div class="action system-actions" >
+          <img src="icons/window_actions_512.png" alt="sim-settings">
+        </div>
+        <div class="action minimize">
+          <img src="icons/window_minimize_512.png" alt="minus">
+        </div>
+        <div class="action maximize">
+          <img src="icons/window_maximize_512.png" alt="maximize">
+        </div>
+        <div class="action close" onclick="window.close();">
+          <img src="icons/window_close_512.png" alt="close">
+        </div>
       </div>
     </div>
 
@@ -52,18 +63,17 @@
       <div class="statusbar">
         <div class="notifications-icons"></div>
         <div class="status">
-          <div class="clock">OSIJehdqlskjhdlkqjshd</div>
-          <div class="battery"></div>
+          <div class="clock">09:11</div>
+          <div class="battery">100%</div>
         </div>
       </div>
       <div class="lockscreen">
+        <div class="lockscreen-blur"></div>
         <div class="lockscreen-time">
           <div class="lockscreen-hour"></div>
           <div class="lockscreen-minute"></div>
           <div class="lockscreen-date"></div>
         </div>
-
-        <span class="lockscreen-swipe"></span>
       </div>
       <div class="cursor"></div>
       <div class="keyboard"></div>

@@ -1,0 +1,22 @@
+{
+  "apps": [
+    {
+      "package": "system",
+      "name": "System",
+      "url": "http://system.localhost:8081/",
+      "manifest_path": "/apps/system/manifest.json"
+    },
+    {
+      "package": "system.homescreen",
+      "name": "Homescreen",
+      "url": "http://system__homescreen.localhost:8081/",
+      "manifest_path": "/apps/system.homescreen/manifest.json"
+    },
+    {
+      "package": "com.google.youtube",
+      "name": "YouTube",
+      "url": "http://com__google__youtube.localhost:8081/",
+      "manifest_path": "/apps/com.google.youtube/manifest.json"
+    }
+  ]
+}

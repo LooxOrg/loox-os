@@ -1,18 +1,12 @@
 
 import fs from 'fs';
+import { Settings } from '../settings';
 
-let appsPaths = [
-  'apps',
-];
 
 const Apps = {
   getAll() {
-    let apps: any[] = [];
-    appsPaths.forEach(path => {
-      if (fs.existsSync(path)) {
-        apps = apps.concat(fs.readdirSync(path));
-      }
-    });
+    let apps = Settings.get('apps', 'apps.json');
+    
     return apps;
   },
   

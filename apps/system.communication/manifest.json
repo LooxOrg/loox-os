@@ -1,0 +1,25 @@
+{
+  "name": "Communications",
+  "package_name": "system.camera",
+  "role": "app",
+  "type": "local",
+  "description": "Camera app for LooxOS",
+  "display": "immersive",
+  "version": "1.0.0",
+  "authors": [
+    { 
+      "name": "Loox Org",
+      "url": "https://looxorg.github.io/"
+    }
+  ],
+  "devices": [ 
+    "desktop",
+    "laptop",
+    "phone",
+    "tablet",
+    "!smart_tv"
+  ],
+  "entry": "index.html",
+  "manifest_version": 1,
+  "manifest_type": "loox_os_app"
+}

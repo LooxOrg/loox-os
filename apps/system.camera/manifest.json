@@ -1,5 +1,6 @@
 {
   "name": "Camera",
+  "package_name": "system.camera",
   "role": "app",
   "type": "local",
   "description": "Camera app for LooxOS",

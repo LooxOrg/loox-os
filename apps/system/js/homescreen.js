@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log(deviceType);
     
     if (deviceType == "phone" || deviceType == "tablet") {
+      console.log("Homescreen");
       await homescreen.init();
       return;
     }
@@ -17,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 let homescreen = {
   init: async function () {  
     
-    let webview = document.createElement("webview");
     let webviewContainer = document.querySelector(".windows");
 
     new AppWindow("http://homescreen.localhost:8081/manifest.json");
