@@ -5,6 +5,7 @@ import fs from 'fs';
 import Apps from '../apps';
 import {Settings} from '../settings';
 import { Console } from 'console';
+import { hostname } from 'os';
 
 let ex = express();
 
@@ -45,6 +46,7 @@ export default function () {
         ex(req, res);
       }
     } else if (!hostname?.startsWith("localhost") && hostname && hostsLength == 2) {
+      hostname = hostname.replaceAll("__", ".");
       let filePath = process.cwd() + "/apps/" + hostname + "/" + path;
       
       console.log("Checking Apps")
@@ -57,13 +59,18 @@ export default function () {
           if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
             res.writeHead(200);
             res.end(fs.readFileSync(filePath));
+            console.log("File found: " + filePath);
           } else {
+            console.log("File not found: " + filePath);
             res.writeHead(404);
             res.end();
           }
+          return;
         }
       }
       
+      res.writeHead(404);
+      res.end();
       //let filePath = process.cwd() + "/apps/" + hostname + "/" +path;
       //
       //if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
@@ -74,7 +81,7 @@ export default function () {
       //  res.end();
       //}
     }
-
+  
   });
   server.listen(8081);
 }

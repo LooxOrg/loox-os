@@ -13,31 +13,29 @@
     manifest: null,
 
     create: async function (manifestUrl, configuration) {
+      console.log("manifestUrl: " + manifestUrl);
       this.manifestUrl = new URL(manifestUrl);
       this.manifest = await this.fetchManifest(this.manifestUrl);
       let existingWindow = document.querySelector(`[data-manifest-url="${this.manifestUrl.origin}"]`);
-
+      
+      console.log("existingWindow: " + existingWindow);
       if (existingWindow) {
-        existingWindow.focus();
         console.log("Focus on existing window");
+        existingWindow.focus();
       } else {
-        this.createWindow(this.manifest);
         console.log("Create new window");
+        this.createWindow(this.manifest);
       }
     },
-
-    fetchManifest: function (manifestUrl) {
-      return fetch(manifestUrl)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error(`Failed to fetch manifest: ${response.status}`);
-        })
-        .catch(error => {
-          console.error('Error fetching manifest:', error);
-          throw error;
-        });
+    
+    fetchManifest: async function (manifestUrl) {
+      let response = await fetch(manifestUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        return data.type;
+      });
+    
+    return response;
     },
     createWindow: async function () {
       let entry = this.manifest.entry;

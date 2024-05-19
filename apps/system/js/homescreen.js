@@ -20,7 +20,7 @@ let homescreen = {
     
     let webviewContainer = document.querySelector(".windows");
 
-    new AppWindow("http://homescreen.localhost:8081/manifest.json");
+    new AppWindow("http://system__homescreen.localhost:8081/manifest.json");
     return
     let BaseUserAgent = "Mozilla/5.0 (Linux; Andorid 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 Chrome/124.0.0.0 LooxOS/1.0.0";
     
