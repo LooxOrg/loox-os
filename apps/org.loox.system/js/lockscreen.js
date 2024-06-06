@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function unlock() {
     lockscreen.style.transition = "transform 0.3s ease";
     lockscreen.style.opacity = "1";
-
+    
     setTimeout(function () {
       lockscreen.style.display = "none";
-    }, 300);
+    }, 0);
   }
 
   //let swipe = document.querySelector(".lockscreen-swipe");

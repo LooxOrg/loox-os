@@ -12,7 +12,18 @@
       "url": "https://looxorg.github.io/"
     }
   ],
-  "entry": "index.html",
+  "entrys": {
+    "desktop": {
+      "entry_file": "desktop.html"
+    },
+    "mobile": {
+      "entry_file": "mobile.html"
+    },
+    "laptop": {
+      "entry_file": "laptop.html"
+    }
+    
+  }
   "manifest_version": 1,
   "manifest_type": "loox_os_app"
 }

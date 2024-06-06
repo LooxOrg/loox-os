@@ -6,6 +6,7 @@ import Apps from '../apps';
 import {Settings} from '../settings';
 import { Console } from 'console';
 import { hostname } from 'os';
+import { app } from 'electron';
 
 let ex = express();
 
@@ -111,3 +112,6 @@ ex.get("/api/device/getType", (req: Request, res: Response) => {
   res.send({ type: process.env.OS_TYPE });
 })
 
+ex.get("/api/development/enabled", (req: Request, res: Response) => {
+  res.send({ enabled: app.isPackaged });
+})

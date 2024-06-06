@@ -1,10 +1,13 @@
 {
   "name": "loox-os",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/system/main.js",
   "scripts": {
-    "start": "tsc && electron dist/system/main.js"
+    "hidden-desktop": "tsc && electron . --desktop --hidden",
+    "fullscreen-desktop": "tsc && electron . --desktop --fullscreen",
+    "desktop-dev": "tsc && electron . --desktop --dev",
+    "start": "tsc && electron ."
   },
   "dependencies": {
     "@types/node": "^20.12.8",

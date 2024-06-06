@@ -16,6 +16,11 @@ class Main {
     app.on('ready', this.whenReady.bind(this));
     process.on('uncaughtException', this.handleError.bind(this));
 
+    // Define variables
+
+    console.log(process.argv);
+    process.env.OS_TYPE = process.argv[2];
+    
     process.env.ROOT_PATH = process.cwd();
   }
 
@@ -33,11 +38,17 @@ class Main {
       OS_TYPE = 'desktop';
     }
     
-    process.env.OS_TYPE = OS_TYPE;
+    if (!OS_VERSION) {
+      OS_VERSION = 'unknown';
+    }
+    if (!process.env.OS_TYPE) {
+      process.env.OS_TYPE = OS_TYPE;
+    }
+    
     process.env.OS_VERSION = OS_VERSION
     
     console.log(OS_TYPE);
-
+    
     let { width, height } = devices[OS_TYPE];
     this.win = new BrowserWindow({
       width: width,
@@ -54,7 +65,7 @@ class Main {
         
       }
     });
-    this.win.loadURL('http://system.localhost:8081/index.html');
+    this.win.loadURL('http://org__loox__system.localhost:8081/index.html');
   }
 
   handleError(_error: Error) {

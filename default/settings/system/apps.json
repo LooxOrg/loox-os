@@ -1,25 +1,25 @@
 {
   "apps": [
     {
-      "package": "system",
+      "package": "org.loox.system",
       "name": "System",
       "url": "http://system.localhost:8081/",
-      "path": "/apps/system/",
+      "path": "/apps/org.system/",
       "manifests": {
-        "default": "/apps/system/manifest.json",
-        "en-us": "/apps/system/manifest.json",
-        "fr-fr": "/apps/system/manifest.fr-fr.json"
+        "default": "/manifest.json",
+        "en-us": "/manifest.json",
+        "fr-fr": "/manifest.fr-fr.json"
       }
     },
     {
-      "package": "system.homescreen",
+      "package": "org.loox.homescreen",
       "name": "Homescreen",
       "url": "http://system__homescreen.localhost:8081/",
-      "path": "/apps/system.homescreen/",
+      "path": "/apps/org.loox..homescreen/",
       "manifests": {
-        "default": "/apps/system.homescreen/manifest.json",
-        "en-us": "/apps/system.homescreen/manifest.json",
-        "fr-fr": "/apps/system.homescreen/manifest.fr-fr.json"
+        "default": "/manifest.json",
+        "en-us": "/manifest.json",
+        "fr-fr": "/manifest.fr-fr.json"
       }
     },
 
@@ -29,9 +29,9 @@
       "url": "http://com__google__youtube.localhost:8081/",
       "path": "/apps/com.google.youtube/",
       "manifests": {
-        "default": "/apps/com.google.youtube/manifest.json",
-        "en-us": "/apps/com.google.youtube/manifest.json",
-        "fr-fr": "/apps/com.google.youtube/manifest.fr-fr.json"
+        "default": "/manifest.json",
+        "en-us": "/manifest.json",
+        "fr-fr": "/manifest.fr-fr.json"
       }
     }
   ]
